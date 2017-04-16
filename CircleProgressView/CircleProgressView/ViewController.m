@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     
     CircleProgressView *view = [CircleProgressView circleViewShowInView:self.view];
@@ -30,11 +30,11 @@
     
     
 //    带动画效果的进度视图
-    CircleProgressViewWithAnimation *animationView = [[CircleProgressViewWithAnimation alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+    CircleProgressViewWithAnimation *animationView = [[CircleProgressViewWithAnimation alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 50)/2, 180, 50, 50)];
     
     animationView.backgroundColor = [UIColor clearColor];
     
-    animationView.animationColor = [UIColor greenColor];
+    animationView.animationColor = [UIColor redColor];
     
     [self.view addSubview:animationView];
     
@@ -43,10 +43,18 @@
         
         [animationView startUpTimer];
         
-        [animationView setPercet:100 withTimer:70];
+        [animationView setPercet:100 withTimer:6];
         
     });
 
+    //动画结束时回调
+    [animationView setBlock:^{
+       
+        for (UIView *view in self.view.subviews) {
+            
+            [view removeFromSuperview];
+        }
+    }];
     
 }
 

@@ -108,7 +108,7 @@
         
         label.font = [UIFont systemFontOfSize:12];
         
-        label.text = @"60s";
+        label.text = @"5s";
         
         [self addSubview:label];
         
@@ -172,7 +172,7 @@
     
     self.userInteractionEnabled = NO;
     
-    _durationToValidity = 60;
+    _durationToValidity = [self.textLab.text intValue];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleDisplayLink:) userInfo:nil repeats:YES];
     
@@ -214,9 +214,16 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
+        
         [self setNeedsDisplay];
         
         [self invalidateTimer];
+        
+        if (self.block) {
+            
+            _block();
+            
+        }
     }
 }
 

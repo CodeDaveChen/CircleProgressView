@@ -43,5 +43,6 @@
 //动画的颜色
 @property(nonatomic,strong)UIColor *animationColor;
 
+@property(nonatomic,copy)void(^block)();
 
 @end
